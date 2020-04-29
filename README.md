@@ -1,2 +1,0 @@
-# CryptokittiesFamilyTree
-Created with CodeSandbox
