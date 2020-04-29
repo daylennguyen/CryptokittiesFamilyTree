@@ -23,7 +23,8 @@ import {
 	checkForFullKittyAddress,
 	fullAddressToShortID,
 } from './util/fetchKitty';
-import PageStepper from './components/PageStepper';
+// const UntypedComponent = StructureNetwork as any 
+// import PageStepper from './components/PageStepper';
 // Material UI theme objects passed to theme provide, primarily used to toggle dark theme
 const darkTheme = createMuiTheme({
 	palette: {
@@ -36,9 +37,20 @@ const lightTheme = createMuiTheme({
 	},
 });
 
+interface Theme {
+	isDark: boolean
+}
+interface AppState{
+	kittyNodes: Array<React.ReactNode>,
+	kittyEdges: Array<React.ReactNode>,
+	activeStep: number,
+	scannedKitties: number
+	theme: Theme,
+
+}
 // Root Application Component
-class App extends React.Component {
-	constructor(props) {
+class App extends React.Component<{}, AppState> {
+	constructor(props: any) {
 		super(props);
 		this.state = {
 			// Node components given to visjs graph; updated by fetchkitty.js
@@ -89,16 +101,16 @@ class App extends React.Component {
 											this.setState({ activeStep: 1 });
 											asyncGetKittyJSON(
 												input,
-												(Nodes, Edges) => {
+												(Nodes: any, Edges: any) => {
 													this.setState({
 														kittyNodes: Nodes,
 														kittyEdges: Edges,
 													});
 												},
-												(ScannedCount) => {
+												(ScannedCount: any) => {
 													this.setState({ scannedKitties: ScannedCount });
 												},
-												(step) => {
+												(step: any) => {
 													this.setState({ activeStep: step });
 												}
 											);
@@ -118,13 +130,16 @@ class App extends React.Component {
 								''
 							)}
 							<main>
-								{this.state.activeStep === 4 ? (
+								{this.state.activeStep === 4 ? (<span>
+
 									<StructureNetwork
-										className={'network'}
+										className='network'
 										isDark={this.state.theme.isDark}
 										edges={this.state.kittyEdges}
 										nodes={this.state.kittyNodes}
 									/>
+
+								</span>
 								) : (
 									''
 								)}

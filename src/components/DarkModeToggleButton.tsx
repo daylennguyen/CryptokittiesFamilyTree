@@ -4,7 +4,7 @@ import Brightness4Icon from "@material-ui/icons/Brightness4Outlined";
 import Fab from "@material-ui/core/Fab";
 
 // Floating Action Button used to toggle on/off the dark theme
-export default function(props) {
+export default function(props: { isDark: boolean; onClick: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined; }) {
 	var icon = props.isDark === true ? <Brightness4Icon /> : <Brightness5Icon />;
 	return (
 		<Fab

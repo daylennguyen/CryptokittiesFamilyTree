@@ -1,14 +1,19 @@
 import * as React from "react";
-import { TextField, Button } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import Button  from "@material-ui/core/Button";
 // Component containing the form in which the user will input and submit the kitty id
-function KittySubmit(props) {
+interface SelectProtected {
+    readonly idField: HTMLDivElement;
+}
+
+function KittySubmit(props: { onKittySubmit: (arg0: any) => void; }) {
 	return (
 		<form
 			onSubmit={(event) => {
 				event.persist();
 				event.preventDefault();
 				// get the text-field value
-				let input = document.querySelector("#kitty-id-field")["value"];
+				let input: SelectProtected = document.querySelector("#kitty-id-field")["value"];
 				props.onKittySubmit(input);
 			}}
 			style={{

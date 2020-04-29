@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Typography } from '@material-ui/core';
 
-export default function Title(props) {
+export default function Title() {
 	const [kittyEmoji, setEmoji] = React.useState('🐱');
 	const Emotes = ['😼', '😹', '🙀', '😾', '😿', '😻', '😺', '😸', '😽'];
 	return (

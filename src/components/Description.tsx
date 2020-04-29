@@ -7,7 +7,7 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React from 'react';
 
-const DescriptionText = (props) => (
+const DescriptionText = () => (
 	<Typography color="textSecondary" variant="body2">
 		CK-Tree is an open-source cryptokitty ancestor visualization tool.
 		<br />
