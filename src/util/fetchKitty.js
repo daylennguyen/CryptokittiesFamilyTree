@@ -40,7 +40,7 @@ function makeNodeComponent(json) {
 				json.name !== null ? json.name : '#' + json.id
 			})`}
 			shape="image"
-			size={50}
+			size={100}
 			image={json.img}
 		/>
 	);

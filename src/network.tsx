@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Network } from "@lifeomic/react-vis-network";
-
+// declare module '@lifeomic/react-vis-network'
 interface NetProps {
 	className:string
 	isDark:boolean
@@ -16,7 +16,7 @@ export class StructureNetwork extends React.Component<NetProps,{}> {
 	// }
 	componentDidMount() {
 		console.log(this.networkComponent);
-		this.networkComponent.current.network.on("click", (event) => {
+		this.networkComponent.current.network.on("click", (event: any) => {
 			console.log("clicked", event);
 		});
 	}
@@ -38,7 +38,7 @@ export class StructureNetwork extends React.Component<NetProps,{}> {
 				},
 				nodes: {
 					font: {
-						size: 32,
+						size: 10,
 						color: this.props.isDark === false ? "black" : "white",
 					},
 				},

@@ -7,7 +7,7 @@ export default function Title() {
 	return (
 		<header>
 			<a href="/" style={{ textDecoration: 'none' }}>
-				<Typography variant="h1" color="textPrimary">
+				<Typography variant="h2" color="textPrimary">
 					CK-Tree
 					<span
 						role="img"

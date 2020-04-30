@@ -8,6 +8,7 @@ import {
 	Stepper,
 	ThemeProvider,
 	Typography,
+	Collapse,
 } from '@material-ui/core';
 import { createMuiTheme } from '@material-ui/core/styles';
 import * as React from 'react';
@@ -47,6 +48,7 @@ interface AppState {
 	activeStep: number;
 	scannedKitties: number;
 	theme: Theme;
+	checked: boolean;
 }
 // Root Application Component
 class App extends React.Component<{}, AppState> {
@@ -64,6 +66,7 @@ class App extends React.Component<{}, AppState> {
 			theme: {
 				isDark: false,
 			},
+			checked:true
 		};
 	}
 
@@ -87,6 +90,7 @@ class App extends React.Component<{}, AppState> {
 					<Title />
 					<Container>
 						<Description />
+						<Collapse in={this.state.checked}>
 						<Card variant="outlined" style={{ padding: '100px' }}>
 							{this.state.activeStep === 0 ? (
 								<KittySubmit
@@ -98,7 +102,11 @@ class App extends React.Component<{}, AppState> {
 										// check for invalid input and parse int NaN==NotANumber
 										if (!isNaN(Number.parseInt(input, 10)) && input !== '0') {
 											input = Number.parseInt(input, 10);
+											// toggle transition for displaying graph
+											this.setState({checked:false})
 											this.setState({ activeStep: 1 });
+											this.setState({checked:true})
+
 											asyncGetKittyJSON(
 												input,
 												(Nodes: any, Edges: any) => {
@@ -111,7 +119,11 @@ class App extends React.Component<{}, AppState> {
 													this.setState({ scannedKitties: ScannedCount });
 												},
 												(step: any) => {
-													this.setState({ activeStep: step });
+													// this.setState({checked:false})
+													this.setState({ activeStep: step,checked:false });
+													// setTimeout(()=>),100)
+													this.setState({checked:true})
+
 												}
 											);
 										}
@@ -144,6 +156,7 @@ class App extends React.Component<{}, AppState> {
 								)}
 							</main>
 						</Card>
+						</Collapse>
 						<Stepper
 							activeStep={this.state.activeStep}
 							alternativeLabel
