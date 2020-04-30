@@ -7,6 +7,7 @@ import {
 	StepLabel,
 	Stepper,
 	ThemeProvider,
+	Typography,
 } from '@material-ui/core';
 import { createMuiTheme } from '@material-ui/core/styles';
 import * as React from 'react';
@@ -23,7 +24,7 @@ import {
 	checkForFullKittyAddress,
 	fullAddressToShortID,
 } from './util/fetchKitty';
-// const UntypedComponent = StructureNetwork as any 
+// const UntypedComponent = StructureNetwork as any
 // import PageStepper from './components/PageStepper';
 // Material UI theme objects passed to theme provide, primarily used to toggle dark theme
 const darkTheme = createMuiTheme({
@@ -38,15 +39,14 @@ const lightTheme = createMuiTheme({
 });
 
 interface Theme {
-	isDark: boolean
+	isDark: boolean;
 }
-interface AppState{
-	kittyNodes: Array<React.ReactNode>,
-	kittyEdges: Array<React.ReactNode>,
-	activeStep: number,
-	scannedKitties: number
-	theme: Theme,
-
+interface AppState {
+	kittyNodes: Array<React.ReactNode>;
+	kittyEdges: Array<React.ReactNode>;
+	activeStep: number;
+	scannedKitties: number;
+	theme: Theme;
 }
 // Root Application Component
 class App extends React.Component<{}, AppState> {
@@ -130,16 +130,15 @@ class App extends React.Component<{}, AppState> {
 								''
 							)}
 							<main>
-								{this.state.activeStep === 4 ? (<span>
-
-									<StructureNetwork
-										className='network'
-										isDark={this.state.theme.isDark}
-										edges={this.state.kittyEdges}
-										nodes={this.state.kittyNodes}
-									/>
-
-								</span>
+								{this.state.activeStep === 4 ? (
+									<span>
+										<StructureNetwork
+											className="network"
+											isDark={this.state.theme.isDark}
+											edges={this.state.kittyEdges}
+											nodes={this.state.kittyNodes}
+										/>
+									</span>
 								) : (
 									''
 								)}
@@ -165,8 +164,10 @@ class App extends React.Component<{}, AppState> {
 						</Stepper>
 					</Container>
 					<footer>
-						<a href="https://flannyan.argent.xyz/">
-							eth donations: 0xb41919C5700779c45116377657Ce56B4E3508eb3
+						<a id="eth-donate" href="https://flannyan.argent.xyz/">
+							<Typography variant="body1" color="textPrimary">
+								eth donations: 0xb41919C5700779c45116377657Ce56B4E3508eb3
+							</Typography>
 						</a>
 					</footer>
 				</Box>

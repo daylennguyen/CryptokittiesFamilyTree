@@ -25,7 +25,7 @@ export class StructureNetwork extends React.Component<NetProps,{}> {
 		// const {isDark,nodes,edges} = props
 		const result = (<Network
 			style={{
-				background: this.props.isDark === false ? "white" : "black",
+				background: this.props.isDark === false ? "white" : "#424242",
 				border: "black solid 1px",
 			}}
 			options={{

@@ -19,9 +19,9 @@ const DescriptionText = () => (
 // The expandable panel at the top of the page
 export default function(props: any) {
 	return (
-		<ExpansionPanel style={{ marginBottom: '10px' }}>
+		<ExpansionPanel style={{ marginBottom: '10px', marginTop:'20px' }}>
 			<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-				<Typography gutterBottom>Description</Typography>
+				<Typography variant='subtitle2'><strong>Description</strong></Typography>
 			</ExpansionPanelSummary>
 			<ExpansionPanelDetails style={{ justifyContent: 'center' }}>
 				{' '}

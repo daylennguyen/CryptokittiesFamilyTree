@@ -20,8 +20,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "noImplicitAny": false,
-    "noImplicitThis": false,
-    "strictNullChecks": false
+    "noImplicitThis": true,
+    "strictNullChecks": true
   },
   "include": [
     "src"
