@@ -6,7 +6,7 @@ import Button  from "@material-ui/core/Button";
 
 function KittySubmit(props: { onKittySubmit: (arg0: any) => void; }) {
 	return (
-		<form
+		<form 
 			onSubmit={(event) => {
 				event.persist();
 				event.preventDefault();

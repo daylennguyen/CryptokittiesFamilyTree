@@ -3,13 +3,12 @@ import {
 	Card,
 	Container,
 	CssBaseline,
-	Step,
-	StepLabel,
-	Stepper,
 	ThemeProvider,
 	Typography,
 	Collapse,
+	Button,
 } from '@material-ui/core';
+import Stepper from './components/Stepper'
 import { createMuiTheme } from '@material-ui/core/styles';
 import * as React from 'react';
 import { render } from 'react-dom';
@@ -25,8 +24,10 @@ import {
 	checkForFullKittyAddress,
 	fullAddressToShortID,
 } from './util/fetchKitty';
+import KittyInfoCard from './components/KittyInfoCard';
 // const UntypedComponent = StructureNetwork as any
 // import PageStepper from './components/PageStepper';
+
 // Material UI theme objects passed to theme provide, primarily used to toggle dark theme
 const darkTheme = createMuiTheme({
 	palette: {
@@ -49,7 +50,16 @@ interface AppState {
 	scannedKitties: number;
 	theme: Theme;
 	checked: boolean;
+	currentSelectedKitty: number;
 }
+const DonationFooter = <footer>
+	<a id="eth-donate" href="https://flannyan.argent.xyz/" style={{margin:'10px'}}>
+		<Typography variant="body1" color="textPrimary">
+			eth donations: 0xb41919C5700779c45116377657Ce56B4E3508eb3
+		</Typography>
+	</a>
+</footer>;
+
 // Root Application Component
 class App extends React.Component<{}, AppState> {
 	constructor(props: any) {
@@ -66,11 +76,13 @@ class App extends React.Component<{}, AppState> {
 			theme: {
 				isDark: false,
 			},
-			checked:true
+			checked: true,
+			currentSelectedKitty: 1,
 		};
 	}
 
 	render() {
+		
 		return (
 			<ThemeProvider
 				theme={this.state.theme.isDark === false ? lightTheme : darkTheme}
@@ -90,99 +102,104 @@ class App extends React.Component<{}, AppState> {
 					<Title />
 					<Container>
 						<Description />
+						{/* <KittyInfoCard SelectedKitty={123} /> */}
 						<Collapse in={this.state.checked}>
-						<Card variant="outlined" style={{ padding: '100px' }}>
-							{this.state.activeStep === 0 ? (
-								<KittySubmit
-									onKittySubmit={(input) => {
-										if (checkForFullKittyAddress(input)) {
-											//parse the id from the url
-											input = fullAddressToShortID(input);
-										}
-										// check for invalid input and parse int NaN==NotANumber
-										if (!isNaN(Number.parseInt(input, 10)) && input !== '0') {
-											input = Number.parseInt(input, 10);
-											// toggle transition for displaying graph
-											this.setState({checked:false})
-											this.setState({ activeStep: 1 });
-											this.setState({checked:true})
+							<Card variant="outlined" style={{ padding: '80px' }}>
+								{this.state.activeStep === 0 ? (
+									<KittySubmit
+										onKittySubmit={(input) => {
+											this.setState({ checked: false });
+											if (checkForFullKittyAddress(input)) {
+												//parse the id from the url
+												input = fullAddressToShortID(input);
+											}
+											// check for invalid input and parse int NaN==NotANumber
+											let ParsedInt = Number.parseInt(input, 10)
+											if (!isNaN(ParsedInt) && input !== '0' && ParsedInt > 0) {
+												input = ParsedInt
+												// toggle transition for displaying graph
+												this.setState({ activeStep: 1 });
+												setTimeout(() => this.setState({ checked: true }), 500);
 
-											asyncGetKittyJSON(
-												input,
-												(Nodes: any, Edges: any) => {
-													this.setState({
-														kittyNodes: Nodes,
-														kittyEdges: Edges,
-													});
-												},
-												(ScannedCount: any) => {
-													this.setState({ scannedKitties: ScannedCount });
-												},
-												(step: any) => {
-													// this.setState({checked:false})
-													this.setState({ activeStep: step,checked:false });
-													// setTimeout(()=>),100)
-													this.setState({checked:true})
+												asyncGetKittyJSON(
+													input,
+													(Nodes: any, Edges: any) => {
+														this.setState({
+															kittyNodes: Nodes,
+															kittyEdges: Edges,
+														});
+													},
+													(ScannedCount: any) => {
+														this.setState({ scannedKitties: ScannedCount });
+													},
+													(step: any) => {
+														// this.setState({checked:false})
+														this.setState({ activeStep: step, checked: false });
+														// setTimeout(()=>),100)
+														this.setState({ checked: true });
+													}
+												);
+											}
+											this.setState({ checked: true });
 
-												}
-											);
-										}
-									}}
-								/>
-							) : (
-								''
-							)}
-							{/* Show a loading bar on steps 1 & 2 */}
-							{this.state.activeStep === 1 || this.state.activeStep === 2 ? (
-								<ScanningKittiesLoader
-									activeStep={this.state.activeStep}
-									count={this.state.scannedKitties}
-								/>
-							) : (
-								''
-							)}
-							<main>
-								{this.state.activeStep === 4 ? (
-									<span>
-										<StructureNetwork
-											className="network"
-											isDark={this.state.theme.isDark}
-											edges={this.state.kittyEdges}
-											nodes={this.state.kittyNodes}
-										/>
-									</span>
+										}}
+									/>
 								) : (
 									''
 								)}
-							</main>
-						</Card>
+								{/* Show a loading bar on steps 1 & 2 */}
+								{this.state.activeStep === 1 || this.state.activeStep === 2 ? (
+									<ScanningKittiesLoader
+										activeStep={this.state.activeStep}
+										count={this.state.scannedKitties}
+									/>
+								) : (
+									''
+								)}
+								<main>
+									{this.state.activeStep === 4 ? (
+										<span>
+											<KittyInfoCard SelectedKitty={123}/>
+											<StructureNetwork
+												className="network"
+												isDark={this.state.theme.isDark}
+												edges={this.state.kittyEdges}
+												nodes={this.state.kittyNodes}
+											/>
+											<Button
+												variant="contained"
+												color="secondary"
+												onClick={() => {
+													this.setState({ checked: false });
+													this.setState({
+														// Node components given to visjs graph; updated by fetchkitty.js
+														kittyNodes: [],
+														// Edge compoenents given to visjs graph
+														kittyEdges: [],
+														// Stepper progress
+														activeStep: 0,
+														// Count of kitties fetched through api
+														scannedKitties: 0,
+														currentSelectedKitty: 1,
+													});
+													setTimeout(
+														() => this.setState({ checked: true }),
+														500
+													);
+												}}
+											>
+												Scan Another Kitty!
+											</Button>
+										</span>
+									) : (
+										''
+									)}
+								</main>
+							</Card>
 						</Collapse>
-						<Stepper
-							activeStep={this.state.activeStep}
-							alternativeLabel
-							style={{ marginTop: '10px' }}
-						>
-							<Step>
-								<StepLabel>Submit KittyId</StepLabel>
-							</Step>
-							<Step>
-								<StepLabel>Scan Ancestor Kitties</StepLabel>
-							</Step>
-							<Step>
-								<StepLabel>Create Graph Elements</StepLabel>
-							</Step>
-							<Step>
-								<StepLabel>View Graph</StepLabel>
-							</Step>
-						</Stepper>
+						<Stepper activeStep={this.state.activeStep}/>
 					</Container>
-					<footer>
-						<a id="eth-donate" href="https://flannyan.argent.xyz/">
-							<Typography variant="body1" color="textPrimary">
-								eth donations: 0xb41919C5700779c45116377657Ce56B4E3508eb3
-							</Typography>
-						</a>
-					</footer>
+					{DonationFooter}
 				</Box>
 			</ThemeProvider>
 		);
