@@ -8,7 +8,7 @@ import {
 	Collapse,
 	Button,
 } from '@material-ui/core';
-import Stepper from './components/Stepper'
+import Stepper from './components/Stepper';
 import { createMuiTheme } from '@material-ui/core/styles';
 import * as React from 'react';
 import { render } from 'react-dom';
@@ -52,13 +52,19 @@ interface AppState {
 	checked: boolean;
 	currentSelectedKitty: number;
 }
-const DonationFooter = <footer>
-	<a id="eth-donate" href="https://flannyan.argent.xyz/" style={{margin:'10px'}}>
-		<Typography variant="body1" color="textPrimary">
-			eth donations: 0xb41919C5700779c45116377657Ce56B4E3508eb3
-		</Typography>
-	</a>
-</footer>;
+const DonationFooter = (
+	<footer>
+		<a
+			id="eth-donate"
+			href="https://flannyan.argent.xyz/"
+			style={{ margin: '10px' }}
+		>
+			<Typography variant="body1" color="textPrimary">
+				eth donations: 0xb41919C5700779c45116377657Ce56B4E3508eb3
+			</Typography>
+		</a>
+	</footer>
+);
 
 // Root Application Component
 class App extends React.Component<{}, AppState> {
@@ -82,7 +88,6 @@ class App extends React.Component<{}, AppState> {
 	}
 
 	render() {
-		
 		return (
 			<ThemeProvider
 				theme={this.state.theme.isDark === false ? lightTheme : darkTheme}
@@ -102,8 +107,8 @@ class App extends React.Component<{}, AppState> {
 					<Title />
 					<Container>
 						<Description />
-						{/* <KittyInfoCard SelectedKitty={123} /> */}
 						<Collapse in={this.state.checked}>
+							{/* Card content will be hot-swapped */}
 							<Card variant="outlined" style={{ padding: '80px' }}>
 								{this.state.activeStep === 0 ? (
 									<KittySubmit
@@ -114,9 +119,9 @@ class App extends React.Component<{}, AppState> {
 												input = fullAddressToShortID(input);
 											}
 											// check for invalid input and parse int NaN==NotANumber
-											let ParsedInt = Number.parseInt(input, 10)
+											let ParsedInt = Number.parseInt(input, 10);
 											if (!isNaN(ParsedInt) && input !== '0' && ParsedInt > 0) {
-												input = ParsedInt
+												input = ParsedInt;
 												// toggle transition for displaying graph
 												this.setState({ activeStep: 1 });
 												setTimeout(() => this.setState({ checked: true }), 500);
@@ -141,7 +146,6 @@ class App extends React.Component<{}, AppState> {
 												);
 											}
 											this.setState({ checked: true });
-
 										}}
 									/>
 								) : (
@@ -157,9 +161,10 @@ class App extends React.Component<{}, AppState> {
 									''
 								)}
 								<main>
+									{/* Kitty Family Tree Visualization Graph */}
 									{this.state.activeStep === 4 ? (
 										<span>
-											<KittyInfoCard SelectedKitty={123}/>
+											<KittyInfoCard SelectedKitty={123} />
 											<StructureNetwork
 												className="network"
 												isDark={this.state.theme.isDark}
@@ -197,7 +202,7 @@ class App extends React.Component<{}, AppState> {
 								</main>
 							</Card>
 						</Collapse>
-						<Stepper activeStep={this.state.activeStep}/>
+						<Stepper activeStep={this.state.activeStep} />
 					</Container>
 					{DonationFooter}
 				</Box>

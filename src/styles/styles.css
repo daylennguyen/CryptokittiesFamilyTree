@@ -18,6 +18,23 @@
 	height: 500px !important;
 }
 
+.MuiCardMedia-media {
+	width: auto !important;
+	margin-right: 15px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 5%;
+}
+
+#kittyCardText {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	/* justify-content: start; */
+	align-items: flex-start;
+}
+.MuiCardContent-root:last-child {
+	padding:16px;
+}
 /* Donation link in footer; blend mode changed to contrast w/ dark mode */
 #eth-donate {
 	text-decoration: none;

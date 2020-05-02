@@ -32,6 +32,8 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 							? '1px solid rgba(0, 0, 0, 0.12)'
 							: '1px solid rgba(255, 255, 255, 0.12)',
 					borderRadius: '10px',
+					marginTop: 25,
+					marginBottom:25
 				}}
 				options={{
 					// physics: false,

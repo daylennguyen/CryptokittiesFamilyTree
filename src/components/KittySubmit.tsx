@@ -27,6 +27,7 @@ function KittySubmit(props: { onKittySubmit: (arg0: any) => void; }) {
 				name="kitty-id-field"
 				id="kitty-id-field"
 				variant="outlined"
+				autoFocus={true}
 				label="Kitty id or Full Kitty Url"
 			/>
 			<label htmlFor="submit-kitty-id-button">
