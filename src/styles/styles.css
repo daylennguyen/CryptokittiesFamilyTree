@@ -12,19 +12,33 @@
 }
 
 /* Network Graph */
-.vis-network * {
+.vis-network canvas {
 	margin: 0px;
 	width: 99% !important;
 	height: 500px !important;
-}
 
-.MuiCardMedia-media {
+	
+}
+.vis-tooltip {
+	position:absolute;
+	/* padding-top: 115px; */
+	margin-top:50px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 10%;
+	background: rgba(0, 0, 0, 0.2);
+	font-size: medium;
+	font-weight: bold;
+	/* mix-blend-mode: difference; */
+}
+.MuiCardMedia-media,.MuiSkeleton-rect {
 	width: auto !important;
 	margin-right: 15px;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 5%;
 }
-
+.MuiSkeleton-rect {
+	min-width: 200px !important;
+}
 #kittyCardText {
 	display: flex;
 	flex-direction: column;
@@ -32,6 +46,8 @@
 	/* justify-content: start; */
 	align-items: flex-start;
 }
+
+
 .MuiCardContent-root:last-child {
 	padding:16px;
 }

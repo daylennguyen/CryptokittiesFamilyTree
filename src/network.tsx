@@ -1,11 +1,18 @@
 import * as React from 'react';
 import { Network } from '@lifeomic/react-vis-network';
-// declare module '@lifeomic/react-vis-network'
 interface NetProps {
 	className: string;
 	isDark: boolean;
 	edges: any[];
 	nodes: any[];
+	setSelectedKitty: any;
+}
+
+async function getKitty(kittyId, callback) {
+	var response = await fetch('https://api.cryptokitties.co/kitties/' + kittyId);
+	var json = await response.json()
+	console.log(json)
+	callback(json)
 }
 
 // Use VisJS network graph to display the family tree. In style 😎
@@ -18,6 +25,8 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 		console.log(this.networkComponent);
 		this.networkComponent.current.network.on('click', (event: any) => {
 			console.log('clicked', event.nodes);
+			getKitty(event['nodes'][0], this.props.setSelectedKitty)
+			// console.log()
 		});
 	}
 
@@ -33,28 +42,36 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 							: '1px solid rgba(255, 255, 255, 0.12)',
 					borderRadius: '10px',
 					marginTop: 25,
-					marginBottom:25
+					marginBottom: 25,
 				}}
 				options={{
-					// physics: false,
+					physics: true,
 					interaction: {
-						hideEdgesOnDrag: true,
-						// tooltipDelay: 200
+						hover: true,
+						// hideEdgesOnDrag: true,
+						// navigationButtons: true,
+						selectConnectedEdges: false,
+
+						tooltipDelay: 0,
 					},
 					autoResize: true,
 					layout: {
-						// hierarchical: {
-						// 	// direction: "DU",
-						// 	sortMethod: "directed",
-						// },
+						hierarchical: {
+							direction: 'UD',
+							sortMethod: 'directed',
+							// shakeTowards: 'leaves',
+						},
 					},
 					nodes: {
+						shadow: true,
 						font: {
 							size: 10,
 							color: this.props.isDark === false ? 'black' : 'white',
 						},
 					},
 					edges: {
+						color: { hover: '#ff0000' },
+						smooth: { type: 'cubicBezier' },
 						arrows: 'from',
 					},
 				}}

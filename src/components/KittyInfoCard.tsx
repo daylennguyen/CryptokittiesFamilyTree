@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Typography, Card, CardContent, CardMedia } from '@material-ui/core';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const cardStyle = {
 	display: 'flex',
@@ -8,7 +9,7 @@ const cardStyle = {
 } as React.CSSProperties;
 
 //
-export default function (props: { SelectedKitty: number }) {
+export default function (props: { SelectedKitty: any }) {
 	return (
 		<Card
 			style={{ position: 'relative' }}
@@ -17,34 +18,38 @@ export default function (props: { SelectedKitty: number }) {
 			// raised
 		>
 			<CardContent style={cardStyle}>
-				<CardMedia
-					component="img"
-					alt="Contemplative Reptile"
-					height="200px"
-					width="200px"
-					image="https://img.cn.cryptokitties.co/0x06012c8cf97bead5deae237070f9587f8e7a266d/1.png"
-					title="Contemplative Reptile"
-				/>
+				{!props.SelectedKitty.id ? (
+					<Skeleton variant="rect" width={200} height={200} />
+				) : (
+					<CardMedia
+						component="img"
+						alt="Contemplative Reptile"
+						height="200px"
+						width="200px"
+						image={`${props.SelectedKitty.image_url_png}`}
+						title="Contemplative Reptile"
+					/>
+				)}
 				<span id={'kittyCardText'}>
+					
 					<Typography variant="subtitle1" color="textSecondary">
 						Name
 					</Typography>
 					<Typography variant="h5" color="textPrimary">
-						Rick James
+						{props.SelectedKitty.name?props.SelectedKitty.name:<Skeleton variant="text" width={100} />}
 					</Typography>
 					<Typography variant="subtitle1" color="textSecondary">
 						Kitty ID
 					</Typography>
 					<Typography variant="h5" color="textPrimary">
-						420
+						{props.SelectedKitty.id?props.SelectedKitty.id:<Skeleton variant="text" width={100} />}
 					</Typography>
 					<Typography variant="subtitle1" color="textSecondary">
 						Generation
 					</Typography>
 					<Typography variant="h5" color="textPrimary">
-						69
+						{props.SelectedKitty.generation>=0?props.SelectedKitty.generation:<Skeleton variant="text" width={100} />}
 					</Typography>
-					
 				</span>
 			</CardContent>
 		</Card>
