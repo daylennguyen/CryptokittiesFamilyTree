@@ -29,7 +29,17 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 			// console.log()
 		});
 	}
-
+	shouldComponentUpdate(nextProps, nextState) {
+		console.log(nextProps,nextState,this.props.edges.length === nextProps.edges.length)
+		if (this.props.isDark!==nextProps.isDark)
+			return true
+		if (this.props.edges.length === nextProps.edges.length ) {
+		  return false;
+		} else {
+		  return true;
+		}
+	  }
+	 
 	render() {
 		// const {isDark,nodes,edges} = props
 		const result = (
