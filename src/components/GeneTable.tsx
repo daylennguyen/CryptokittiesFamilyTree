@@ -1,5 +1,16 @@
 import * as React from 'react';
-import { Typography, Card, CardContent, CardMedia } from '@material-ui/core';
+import {
+	Typography,
+	Card,
+	CardContent,
+	CardMedia,
+	TableContainer,
+	Table,
+	TableHead,
+	TableRow,
+	TableCell,
+	TableBody,
+} from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 const cardStyle = {
@@ -9,19 +20,37 @@ const cardStyle = {
 
 //
 export default function (props: { SelectedKitty: any }) {
-
-    
-
 	return (
-		<Card
-			style={{ position: 'relative' }}
-			// elevation={1}
-			variant={'outlined'}
-			// raised
-		>
-			<CardContent style={cardStyle}>
-				
-			</CardContent>
-		</Card>
+		<TableContainer component={Card}>
+			<Table size="small">
+				<TableHead>
+					<TableRow>
+						<TableCell>
+							<b>P1</b>
+						</TableCell>
+						<TableCell><b>H1</b></TableCell>
+						<TableCell><b>H2</b></TableCell>
+						<TableCell><b>H3</b></TableCell>
+						<TableCell><b>H4</b></TableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
+					<TableRow>
+						<TableCell>123</TableCell>
+						<TableCell>123</TableCell>
+						<TableCell>123</TableCell>
+						<TableCell>123</TableCell>
+						<TableCell>123</TableCell>
+					</TableRow>
+					<TableRow>
+						<TableCell>123</TableCell>
+						<TableCell>123</TableCell>
+						<TableCell>123</TableCell>
+						<TableCell>123</TableCell>
+						<TableCell>123</TableCell>
+					</TableRow>
+				</TableBody>
+			</Table>
+		</TableContainer>
 	);
 }

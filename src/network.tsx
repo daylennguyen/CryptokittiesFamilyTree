@@ -10,9 +10,9 @@ interface NetProps {
 
 async function getKitty(kittyId, callback) {
 	var response = await fetch('https://api.cryptokitties.co/kitties/' + kittyId);
-	var json = await response.json()
-	console.log(json)
-	callback(json)
+	var json = await response.json();
+	console.log(json);
+	callback(json);
 }
 
 // Use VisJS network graph to display the family tree. In style 😎
@@ -25,21 +25,25 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 		console.log(this.networkComponent);
 		this.networkComponent.current.network.on('click', (event: any) => {
 			console.log('clicked', event.nodes);
-			getKitty(event['nodes'][0], this.props.setSelectedKitty)
+			if (event.nodes.length !== 0)
+				getKitty(event['nodes'][0], this.props.setSelectedKitty);
 			// console.log()
 		});
 	}
 	shouldComponentUpdate(nextProps, nextState) {
-		console.log(nextProps,nextState,this.props.edges.length === nextProps.edges.length)
-		if (this.props.isDark!==nextProps.isDark)
-			return true
-		if (this.props.edges.length === nextProps.edges.length ) {
-		  return false;
+		console.log(
+			nextProps,
+			nextState,
+			this.props.edges.length === nextProps.edges.length
+		);
+		if (this.props.isDark !== nextProps.isDark) return true;
+		if (this.props.edges.length === nextProps.edges.length) {
+			return false;
 		} else {
-		  return true;
+			return true;
 		}
-	  }
-	 
+	}
+
 	render() {
 		// const {isDark,nodes,edges} = props
 		const result = (

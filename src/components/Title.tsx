@@ -5,7 +5,7 @@ export default function Title() {
 	const [kittyEmoji, setEmoji] = React.useState('🐱');
 	const Emotes = ['😼', '😹', '🙀', '😾', '😿', '😻', '😺', '😸', '😽'];
 	return (
-		<header style={{minWidth:'100%'}}>
+		<header style={{marginTop: '50px',marginBottom: '50px'}}>
 			<a href="/" style={{ textDecoration: 'none', }}>
 				<Typography variant="h2" color="textPrimary" style={{display:'flex', justifyContent:'center'}}>
 					CK-Tree
