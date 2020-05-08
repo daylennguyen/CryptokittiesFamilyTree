@@ -37,7 +37,7 @@ function makeEdgeComponent(json)
 // create the kitty node to be inserted into the graph
 function makeNodeComponent(json)
 {
-	console.log(json);
+	// console.log(json);
 	return (
 		<Node
 			id={ `${json.id}` }

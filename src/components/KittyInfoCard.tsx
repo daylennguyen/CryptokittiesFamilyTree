@@ -15,9 +15,9 @@ const cardStyle = {
 
 //
 export default function (props: { SelectedKitty: any }) {
-	React.useEffect(() => {
-		console.log('useEffects', props.SelectedKitty);
-	}, []);
+	// React.useEffect(() => {
+	// 	console.log('useEffects', props.SelectedKitty);
+	// }, []);
 
 	// console.log("Selected kitty=",props.SelectedKitty)
 	return (

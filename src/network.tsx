@@ -6,12 +6,13 @@ interface NetProps {
 	edges: any[];
 	nodes: any[];
 	setSelectedKitty: any;
+	setCattributes: any;
 }
 
 async function getKitty(kittyId, callback) {
 	var response = await fetch('https://api.cryptokitties.co/kitties/' + kittyId);
 	var json = await response.json();
-	console.log(json);
+	// console.log(json);
 	callback(json);
 }
 
@@ -22,11 +23,12 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 	// 	super(props);
 	// }
 	componentDidMount() {
-		console.log(this.networkComponent);
+		// console.log(this.networkComponent);
 		this.networkComponent.current.network.on('click', (event: any) => {
-			console.log('clicked', event.nodes);
-			if (event.nodes.length !== 0)
+			// console.log('clicked', event.nodes);
+			if (event.nodes.length !== 0){
 				getKitty(event['nodes'][0], this.props.setSelectedKitty);
+			}
 			// console.log()
 		});
 	}

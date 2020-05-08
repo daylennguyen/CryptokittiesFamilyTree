@@ -17,6 +17,8 @@ import Description from './components/Description';
 import KittySubmit from './components/KittySubmit';
 import ScanningKittiesLoader from './components/ScanningKittiesLoader';
 import Title from './components/Title';
+import { fetchCattributes } from './util/fetchCKBoxData';
+
 import { StructureNetwork } from './network';
 import './styles/styles.css';
 import {
@@ -51,6 +53,7 @@ interface AppState {
 	theme: Theme;
 	checked: boolean;
 	selectedKitty: any;
+	cattributes: any;
 }
 const DonationFooter = (
 	<footer>
@@ -84,10 +87,20 @@ class App extends React.Component<{}, AppState> {
 			},
 			checked: true,
 			selectedKitty: {},
+			cattributes: {},
 		};
 	}
 
+	componentDidMount() {
+		fetchCattributes((response) => {
+			this.setState({ cattributes: response });
+		});
+
+		// this.setState(())
+	}
+
 	render() {
+		console.log(this.state);
 		return (
 			<ThemeProvider
 				theme={this.state.theme.isDark === false ? lightTheme : darkTheme}
@@ -124,12 +137,16 @@ class App extends React.Component<{}, AppState> {
 										<span>
 											<KittyInfoCard SelectedKitty={this.state.selectedKitty} />
 											<StructureNetwork
+												setCattributes={(data) => {
+													this.setState({ cattributes: data });
+												}}
 												className="network"
 												isDark={this.state.theme.isDark}
 												edges={this.state.kittyEdges}
 												nodes={this.state.kittyNodes}
 												setSelectedKitty={(kitty) => {
-													this.setState({ selectedKitty: kitty });
+													if (kitty !== this.state.selectedKitty)
+														this.setState({ selectedKitty: kitty });
 												}}
 											/>
 											<Button
@@ -154,7 +171,9 @@ class App extends React.Component<{}, AppState> {
 		);
 	}
 
-	private setStateThemeIsDark(): ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined {
+	private setStateThemeIsDark():
+		| ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+		| undefined {
 		return () => {
 			this.setState({
 				theme: {
