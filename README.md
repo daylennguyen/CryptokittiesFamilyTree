@@ -1,2 +1,2 @@
 # CKTree
-#### The Cryptokitties Family Tree Visualizer 
+#### The Cryptokitties Family Tree Visualizer~ 

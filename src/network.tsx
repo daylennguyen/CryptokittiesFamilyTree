@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Network } from '@lifeomic/react-vis-network';
 import { fetchKittyGenetics } from './util/fetchCKBoxData';
+import NetworkToggleBtnGroup from './components/NetworkToggleBtnGroup';
+
 interface NetProps {
 	className: string;
 	isDark: boolean;
@@ -26,13 +28,17 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 	// 	super(props);
 	// }
 	componentDidMount() {
-	// when the graph is clicked
+		// when the graph is clicked
 		this.networkComponent.current.network.on('click', (event: any) => {
 			// console.log('clicked', event.nodes);
-			if (event.nodes.length !== 0){
+			if (event.nodes.length !== 0) {
 				getKitty(event['nodes'][0], this.props.setSelectedKitty);
 				console.log(event['nodes'][0]);
-				fetchKittyGenetics(event['nodes'][0],this.props.cattributes,this.props.setTraitData)
+				fetchKittyGenetics(
+					event['nodes'][0],
+					this.props.cattributes,
+					this.props.setTraitData
+				);
 			}
 			// console.log()
 		});
@@ -54,61 +60,64 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 	render() {
 		// const {isDark,nodes,edges} = props
 		const result = (
-			<Network
-				style={{
-					background: this.props.isDark === false ? 'white' : '#424242',
-					border:
-						this.props.isDark === false
-							? '1px solid rgba(0, 0, 0, 0.12)'
-							: '1px solid rgba(255, 255, 255, 0.12)',
-					borderRadius: '10px',
-					marginTop: 25,
-					marginBottom: 25,
-				}}
-				options={{
-					physics: true,
-					interaction: {
-						hover: true,
-						// hideEdgesOnDrag: true,
-						// navigationButtons: true,
-						selectConnectedEdges: false,
+			<span>
+				<Network
+					style={{
+						background: this.props.isDark === false ? 'white' : '#424242',
+						border:
+							this.props.isDark === false
+								? '1px solid rgba(0, 0, 0, 0.12)'
+								: '1px solid rgba(255, 255, 255, 0.12)',
+						borderRadius: '10px',
+						marginTop: 25,
+						marginBottom: 25,
+					}}
+					options={{
+						physics: true,
+						interaction: {
+							hover: true,
+							// hideEdgesOnDrag: true,
+							// navigationButtons: true,
+							selectConnectedEdges: false,
 
-						tooltipDelay: 0,
-					},
-					autoResize: true,
-					layout: {
-						hierarchical: {
-							direction: 'UD',
-							sortMethod: 'directed',
-							// shakeTowards: 'leaves',
+							tooltipDelay: 0,
 						},
-					},
-					nodes: {
-						shadow: true,
-						font: {
-							size: 10,
-							color: this.props.isDark === false ? 'black' : 'white',
+						autoResize: true,
+						layout: {
+							hierarchical: {
+								direction: 'UD',
+								sortMethod: 'directed',
+								// shakeTowards: 'leaves',
+							},
 						},
-					},
-					edges: {
-						color: { hover: '#ff0000' },
-						smooth: { type: 'cubicBezier' },
-						arrows: 'from',
-					},
-				}}
-				ref={this.networkComponent}
-			>
-				{this.props.nodes === []
-					? null
-					: this.props.nodes.map((singleNode) => {
-							return singleNode;
-					  })}
-				{this.props.edges === []
-					? null
-					: this.props.edges.map((singleEdge) => {
-							return singleEdge;
-					  })}
-			</Network>
+						nodes: {
+							shadow: true,
+							font: {
+								size: 10,
+								color: this.props.isDark === false ? 'black' : 'white',
+							},
+						},
+						edges: {
+							color: { hover: '#ff0000' },
+							smooth: { type: 'cubicBezier' },
+							arrows: 'from',
+						},
+					}}
+					ref={this.networkComponent}
+				>
+					{this.props.nodes === []
+						? null
+						: this.props.nodes.map((singleNode) => {
+								return singleNode;
+						  })}
+					{this.props.edges === []
+						? null
+						: this.props.edges.map((singleEdge) => {
+								return singleEdge;
+						  })}
+				</Network>
+				<NetworkToggleBtnGroup/>
+			</span>
 		) as React.ReactNode;
 
 		return result;
