@@ -27,6 +27,7 @@ import {
 	fullAddressToShortID,
 } from './util/fetchKitty';
 import KittyInfoCard from './components/KittyInfoCard';
+import GeneTable from './components/GeneTable';
 // const UntypedComponent = StructureNetwork as any
 // import PageStepper from './components/PageStepper';
 
@@ -140,6 +141,7 @@ class App extends React.Component<{}, AppState> {
 												setCattributes={(data) => {
 													this.setState({ cattributes: data });
 												}}
+												cattributes={this.state.cattributes}
 												className="network"
 												isDark={this.state.theme.isDark}
 												edges={this.state.kittyEdges}
@@ -149,6 +151,7 @@ class App extends React.Component<{}, AppState> {
 														this.setState({ selectedKitty: kitty });
 												}}
 											/>
+											<GeneTable SelectedKitty={this.state.selectedKitty} />
 											<Button
 												variant="contained"
 												color="secondary"

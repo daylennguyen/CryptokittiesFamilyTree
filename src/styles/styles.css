@@ -17,12 +17,13 @@
 	width: 99% !important;
 	height: 500px !important;
 	/* mix-blend-mode: difference; */
-	
+
 }
+
 .vis-tooltip {
-	position:absolute;
+	position: absolute;
 	/* padding-top: 115px; */
-	margin-top:50px;
+	margin-top: 50px;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 10%;
 	background: rgba(0, 0, 0, 0.2);
@@ -30,27 +31,40 @@
 	font-weight: bold;
 	/* mix-blend-mode: difference; */
 }
-.MuiCardMedia-media,.MuiSkeleton-rect {
+
+.MuiCardMedia-media,
+.MuiSkeleton-rect {
 	width: auto !important;
-	margin-right: 15px;
+	/* margin-right: 15px; */
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 5%;
 }
+
 .MuiSkeleton-rect {
 	min-width: 200px !important;
 }
+
 #kittyCardText {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	/* width: 200px; */
+	margin-left: 10px;
+	/* max-height: 200px; */
+	flex-wrap: wrap;
 	/* justify-content: start; */
 	align-items: flex-start;
 }
 
+a {
+	mix-blend-mode: difference;
+	color:white;
+	text-decoration: none;
+}
 
 .MuiCardContent-root:last-child {
-	padding:16px;
+	padding: 16px;
 }
+
 /* Donation link in footer; blend mode changed to contrast w/ dark mode */
 #eth-donate {
 	text-decoration: none;

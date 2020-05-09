@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Network } from '@lifeomic/react-vis-network';
+import { fetchKittyGenetics } from './util/fetchCKBoxData';
 interface NetProps {
 	className: string;
 	isDark: boolean;
@@ -7,6 +8,7 @@ interface NetProps {
 	nodes: any[];
 	setSelectedKitty: any;
 	setCattributes: any;
+	cattributes: any;
 }
 
 async function getKitty(kittyId, callback) {
@@ -23,11 +25,13 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 	// 	super(props);
 	// }
 	componentDidMount() {
-		// console.log(this.networkComponent);
+	// when the graph is clicked
 		this.networkComponent.current.network.on('click', (event: any) => {
 			// console.log('clicked', event.nodes);
 			if (event.nodes.length !== 0){
 				getKitty(event['nodes'][0], this.props.setSelectedKitty);
+				console.log(event['nodes'][0]);
+				fetchKittyGenetics(event['nodes'][0],this.props.cattributes);
 			}
 			// console.log()
 		});

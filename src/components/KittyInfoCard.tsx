@@ -6,28 +6,20 @@ import {
 	CardMedia,
 } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const cardStyle = {
 	display: 'flex',
 	flexDirection: 'row',
-	// justifyContent: '',
 } as React.CSSProperties;
 
-//
+// This component accepts the json response given by the ck api
+// we parse the json and display the data above the network graph
 export default function (props: { SelectedKitty: any }) {
-	// React.useEffect(() => {
-	// 	console.log('useEffects', props.SelectedKitty);
-	// }, []);
-
-	// console.log("Selected kitty=",props.SelectedKitty)
 	return (
-		<Card
-			style={{ position: 'relative' }}
-			// elevation={1}
-			variant={'outlined'}
-			// raised
-		>
+		<Card style={{ position: 'relative' }} variant={'outlined'}>
 			<CardContent style={cardStyle}>
+				{/* Cant find the kitty image? display a loading/skeleton component*/}
 				{!props.SelectedKitty.id ? (
 					<Skeleton variant="rect" width={200} height={200} />
 				) : (
@@ -41,39 +33,62 @@ export default function (props: { SelectedKitty: any }) {
 					/>
 				)}
 				<span id={'kittyCardText'}>
-					<Typography variant="subtitle1" color="textSecondary">
-						Name
-					</Typography>
-					<Typography variant="h5" color="textPrimary">
-						{props.SelectedKitty.name ? (
-							props.SelectedKitty.name
-						) : (
-							<Skeleton variant="text" width={100} />
-						)}
-					</Typography>
-					<Typography variant="subtitle1" color="textSecondary">
-						Kitty ID
-					</Typography>
-					<Typography variant="h5" color="textPrimary">
-						{props.SelectedKitty.id ? (
-							props.SelectedKitty.id
-						) : (
-							<Skeleton variant="text" width={100} />
-						)}
-					</Typography>
-					<Typography variant="subtitle1" color="textSecondary">
-						Generation
-					</Typography>
-					<Typography variant="h5" color="textPrimary">
-						{props.SelectedKitty.generation >= 0 ? (
-							props.SelectedKitty.generation
-						) : (
-							<Skeleton variant="text" width={100} />
-						)}
-					</Typography>
+					<ValueText
+						children={
+							<a
+								href={`https://www.cryptokitties.co/kitty/${props.SelectedKitty.id}`}
+							>
+								{`${
+									props.SelectedKitty.name === null
+										? ''
+										: props.SelectedKitty.name+'\n'
+								} (#${props.SelectedKitty.id})`}
+							</a>
+						}
+					/>
+
+					<InfoHeader
+						text={
+							<a
+								href={
+									'https://cryptokitties.co/profile/' +
+									props.SelectedKitty.owner.address
+								}
+							>
+								{props.SelectedKitty.owner.nickname}
+							</a>
+						}
+						icon={<AccountCircleIcon />}
+					/>
+
+					<InfoHeader text={`Gen ${props.SelectedKitty.generation}`} />
 				</span>
-				
 			</CardContent>
 		</Card>
+	);
+}
+
+function ValueText({ children, ...otherProps }) {
+	return (
+		<Typography variant="h6" color="textPrimary" {...otherProps}>
+			{children}
+		</Typography>
+	);
+}
+function InfoHeader({ icon = <span />, text, ...otherProps }) {
+	return (
+		<span
+			style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
+		>
+			{icon}
+			<Typography
+				variant="subtitle1"
+				color="textSecondary"
+				style={{  }}
+				{...otherProps}
+			>
+				{text}
+			</Typography>
+		</span>
 	);
 }
