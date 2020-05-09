@@ -26,14 +26,18 @@ export async function fetchCattributes(callback: any) {
 // Function to fetch and decipher the CKBox data for a specific kitty
 export async function fetchKittyGenetics(
 	kittyId: number,
-	cattribute_legend: any
+	cattribute_legend: any,
+	setTraits: any
 ) {
-	fetch(`https://cors-anywhere.herokuapp.com/${ckbox_url}${kittyId}`, {
-		method: 'GET',
-		headers: {
-			origin: document.location.href,
-		},
-	})
+	var result = await fetch(
+		`https://cors-anywhere.herokuapp.com/${ckbox_url}${kittyId}`,
+		{
+			method: 'GET',
+			headers: {
+				origin: document.location.href,
+			},
+		}
+	)
 		.then((response) => {
 			return response.json();
 		})
@@ -43,11 +47,14 @@ export async function fetchKittyGenetics(
 			// { api_desc: [string], api_type: string, codex_type: string, gen0_pos: [number], gene_desc: [string], group_n: num, group_tag: string}
 			var arr = KittyDecode(cattribute_legend, trait_data);
 			// console.log(arr)
+			setTraits(arr);
 			return arr;
 		})
 		.catch((err) => {
 			console.log(err);
 		});
+
+	return result;
 }
 
 const KittyDecode = (cattribute_legend, trait_data) => {
@@ -60,7 +67,7 @@ const KittyDecode = (cattribute_legend, trait_data) => {
 				// check if the trait has a name defined in the legend
 				cattribute_legend[index - 1]['api_desc'][trait_num] === null
 					? `${
-						// if it doesn't, append and pad the trait number to the geneType/group_tag. Ex: WE05
+							// if it doesn't, append and pad the trait number to the geneType/group_tag. Ex: WE05
 							cattribute_legend[index - 1]['group_tag']
 					  }${trait_num.toString().padStart(2, '0')}`
 					: cattribute_legend[index - 1]['api_desc'][trait_num]
@@ -68,6 +75,6 @@ const KittyDecode = (cattribute_legend, trait_data) => {
 		}
 		result.push(currentTraitRow);
 	}
-	console.log(result)
+	console.log(result);
 	return result;
 };

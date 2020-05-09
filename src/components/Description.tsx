@@ -24,7 +24,6 @@ export default function(props: any) {
 				<Typography variant='subtitle2'><strong>Description</strong></Typography>
 			</ExpansionPanelSummary>
 			<ExpansionPanelDetails style={{ justifyContent: 'center' }}>
-				{' '}
 				<DescriptionText />
 			</ExpansionPanelDetails>
 		</ExpansionPanel>

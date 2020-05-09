@@ -55,6 +55,7 @@ interface AppState {
 	checked: boolean;
 	selectedKitty: any;
 	cattributes: any;
+	trait_data: any;
 }
 const DonationFooter = (
 	<footer>
@@ -88,6 +89,7 @@ class App extends React.Component<{}, AppState> {
 			},
 			checked: true,
 			selectedKitty: {},
+			trait_data: [],
 			cattributes: {},
 		};
 	}
@@ -96,8 +98,6 @@ class App extends React.Component<{}, AppState> {
 		fetchCattributes((response) => {
 			this.setState({ cattributes: response });
 		});
-
-		// this.setState(())
 	}
 
 	render() {
@@ -150,8 +150,11 @@ class App extends React.Component<{}, AppState> {
 													if (kitty !== this.state.selectedKitty)
 														this.setState({ selectedKitty: kitty });
 												}}
+												setTraitData={(data) => {
+													this.setState({ trait_data: data });
+												}}
 											/>
-											<GeneTable SelectedKitty={this.state.selectedKitty} />
+											<GeneTable traits={this.state.trait_data} />
 											<Button
 												variant="contained"
 												color="secondary"
@@ -192,11 +195,21 @@ class App extends React.Component<{}, AppState> {
 		return () => {
 			this.setState({ checked: false });
 			this.setState({
+				// Node components given to visjs graph; updated by fetchkitty.js
 				kittyNodes: [],
+				// Edge compoenents given to visjs graph
 				kittyEdges: [],
+				// Stepper progress
 				activeStep: 0,
+				// Count of kitties fetched through api
 				scannedKitties: 0,
+				theme: {
+					isDark: false,
+				},
+				checked: true,
 				selectedKitty: {},
+				trait_data: [],
+				// cattributes: {},
 			});
 			setTimeout(() => this.setState({ checked: true }), 500);
 		};

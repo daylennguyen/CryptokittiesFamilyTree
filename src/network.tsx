@@ -9,6 +9,7 @@ interface NetProps {
 	setSelectedKitty: any;
 	setCattributes: any;
 	cattributes: any;
+	setTraitData: any;
 }
 
 async function getKitty(kittyId, callback) {
@@ -31,7 +32,7 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 			if (event.nodes.length !== 0){
 				getKitty(event['nodes'][0], this.props.setSelectedKitty);
 				console.log(event['nodes'][0]);
-				fetchKittyGenetics(event['nodes'][0],this.props.cattributes);
+				fetchKittyGenetics(event['nodes'][0],this.props.cattributes,this.props.setTraitData)
 			}
 			// console.log()
 		});
