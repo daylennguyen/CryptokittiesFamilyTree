@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.87ce9e96.chunk.css",
-    "main.js": "/static/js/main.99fc1375.chunk.js",
-    "main.js.map": "/static/js/main.99fc1375.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.cc62cd50.js",
-    "runtime-main.js.map": "/static/js/runtime-main.cc62cd50.js.map",
-    "static/js/2.c06eed9a.chunk.js": "/static/js/2.c06eed9a.chunk.js",
-    "static/js/2.c06eed9a.chunk.js.map": "/static/js/2.c06eed9a.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.3958d439d4d4da7da67a0eead9a3a6dc.js": "/precache-manifest.3958d439d4d4da7da67a0eead9a3a6dc.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.87ce9e96.chunk.css.map": "/static/css/main.87ce9e96.chunk.css.map",
-    "static/js/2.c06eed9a.chunk.js.LICENSE.txt": "/static/js/2.c06eed9a.chunk.js.LICENSE.txt"
+    "main.css": "/daylennguyen/CryptokittiesFamilyTreestatic/css/main.87ce9e96.chunk.css",
+    "main.js": "/daylennguyen/CryptokittiesFamilyTreestatic/js/main.99fc1375.chunk.js",
+    "main.js.map": "/daylennguyen/CryptokittiesFamilyTreestatic/js/main.99fc1375.chunk.js.map",
+    "runtime-main.js": "/daylennguyen/CryptokittiesFamilyTreestatic/js/runtime-main.0e568859.js",
+    "runtime-main.js.map": "/daylennguyen/CryptokittiesFamilyTreestatic/js/runtime-main.0e568859.js.map",
+    "static/js/2.c06eed9a.chunk.js": "/daylennguyen/CryptokittiesFamilyTreestatic/js/2.c06eed9a.chunk.js",
+    "static/js/2.c06eed9a.chunk.js.map": "/daylennguyen/CryptokittiesFamilyTreestatic/js/2.c06eed9a.chunk.js.map",
+    "index.html": "/daylennguyen/CryptokittiesFamilyTreeindex.html",
+    "precache-manifest.af50b8809878d8c55c825fc54f4188b6.js": "/daylennguyen/CryptokittiesFamilyTreeprecache-manifest.af50b8809878d8c55c825fc54f4188b6.js",
+    "service-worker.js": "/daylennguyen/CryptokittiesFamilyTreeservice-worker.js",
+    "static/css/main.87ce9e96.chunk.css.map": "/daylennguyen/CryptokittiesFamilyTreestatic/css/main.87ce9e96.chunk.css.map",
+    "static/js/2.c06eed9a.chunk.js.LICENSE.txt": "/daylennguyen/CryptokittiesFamilyTreestatic/js/2.c06eed9a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.cc62cd50.js",
+    "static/js/runtime-main.0e568859.js",
     "static/js/2.c06eed9a.chunk.js",
     "static/css/main.87ce9e96.chunk.css",
     "static/js/main.99fc1375.chunk.js"
