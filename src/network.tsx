@@ -81,8 +81,6 @@ export class StructureNetwork extends React.Component<NetProps, NetState> {
 						physics: this.state.physics,
 						interaction: {
 							hover: true,
-							// hideEdgesOnDrag: true,
-							// navigationButtons: true,
 							selectConnectedEdges: false,
 
 							tooltipDelay: 0,

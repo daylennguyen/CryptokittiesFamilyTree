@@ -52,19 +52,19 @@ function NetworkToggleBtnGroup(props) {
 					</Tooltip>
 				</ToggleButton>
 			</ToggleButtonGroup>
-			<Tooltip title="Physics Toggle" aria-label="Physics Toggle">
-				<ToggleButton
-					value="PHYSICS"
-					key={6}
-					selected={selected}
-					onChange={() => {
-						setSelected(!selected);
-						props.physics(!selected);
-					}}
-				>
+			<ToggleButton
+				value="PHYSICS"
+				key={6}
+				selected={selected}
+				onChange={() => {
+					setSelected(!selected);
+					props.physics(!selected);
+				}}
+			>
+				<Tooltip title="Physics Toggle" aria-label="Physics Toggle">
 					<FitnessCenterIcon />
-				</ToggleButton>
-			</Tooltip>
+				</Tooltip>
+			</ToggleButton>
 		</span>
 	);
 }
