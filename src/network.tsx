@@ -13,6 +13,10 @@ interface NetProps {
 	cattributes: any;
 	setTraitData: any;
 }
+interface NetState {
+	layoutDirection: string;
+	physics: boolean;
+}
 
 async function getKitty(kittyId, callback) {
 	var response = await fetch('https://api.cryptokitties.co/kitties/' + kittyId);
@@ -22,18 +26,18 @@ async function getKitty(kittyId, callback) {
 }
 
 // Use VisJS network graph to display the family tree. In style 😎
-export class StructureNetwork extends React.Component<NetProps, {}> {
+export class StructureNetwork extends React.Component<NetProps, NetState> {
 	private networkComponent: any = React.createRef();
-	// constructor(props: any){
-	// 	super(props);
-	// }
+	constructor(props: any) {
+		super(props);
+		this.state = { layoutDirection: 'UD', physics: true };
+	}
 	componentDidMount() {
 		// when the graph is clicked
 		this.networkComponent.current.network.on('click', (event: any) => {
-			// console.log('clicked', event.nodes);
 			if (event.nodes.length !== 0) {
 				getKitty(event['nodes'][0], this.props.setSelectedKitty);
-				console.log(event['nodes'][0]);
+				// console.log(event['nodes'][0]);
 				fetchKittyGenetics(
 					event['nodes'][0],
 					this.props.cattributes,
@@ -44,12 +48,12 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 		});
 	}
 	shouldComponentUpdate(nextProps, nextState) {
-		console.log(
-			nextProps,
-			nextState,
-			this.props.edges.length === nextProps.edges.length
-		);
-		if (this.props.isDark !== nextProps.isDark) return true;
+		if (
+			this.props.isDark !== nextProps.isDark ||
+			this.state.layoutDirection !== nextState.layoutDirection ||
+			this.state.physics !== nextState.physics
+		)
+			return true;
 		if (this.props.edges.length === nextProps.edges.length) {
 			return false;
 		} else {
@@ -59,6 +63,7 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 
 	render() {
 		// const {isDark,nodes,edges} = props
+		console.log(this.state);
 		const result = (
 			<span>
 				<Network
@@ -73,7 +78,7 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 						marginBottom: 25,
 					}}
 					options={{
-						physics: true,
+						physics: this.state.physics,
 						interaction: {
 							hover: true,
 							// hideEdgesOnDrag: true,
@@ -85,7 +90,11 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 						autoResize: true,
 						layout: {
 							hierarchical: {
-								direction: 'UD',
+								enabled: this.state.layoutDirection === 'UNLOCK' ? false : true,
+								direction:
+									this.state.layoutDirection === 'UNLOCK'
+										? 'UD'
+										: this.state.layoutDirection,
 								sortMethod: 'directed',
 								// shakeTowards: 'leaves',
 							},
@@ -116,7 +125,17 @@ export class StructureNetwork extends React.Component<NetProps, {}> {
 								return singleEdge;
 						  })}
 				</Network>
-				<NetworkToggleBtnGroup/>
+				<NetworkToggleBtnGroup
+					layout={this.state.layoutDirection}
+					HandleLayoutChange={(ev) => {
+						// console.log(layout)
+						console.log(ev);
+						this.setState({ layoutDirection: ev });
+					}}
+					physics={(toggle: boolean) => {
+						this.setState({ physics: toggle });
+					}}
+				/>
 			</span>
 		) as React.ReactNode;
 
