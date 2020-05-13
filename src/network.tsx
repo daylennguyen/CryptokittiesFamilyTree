@@ -63,7 +63,7 @@ export class StructureNetwork extends React.Component<NetProps, NetState> {
 
 	render() {
 		// const {isDark,nodes,edges} = props
-		console.log(this.state);
+		// console.log(this.state);
 		const result = (
 			<span>
 				<Network
@@ -127,7 +127,7 @@ export class StructureNetwork extends React.Component<NetProps, NetState> {
 					layout={this.state.layoutDirection}
 					HandleLayoutChange={(ev) => {
 						// console.log(layout)
-						console.log(ev);
+						// console.log(ev);
 						this.setState({ layoutDirection: ev });
 					}}
 					physics={(toggle: boolean) => {

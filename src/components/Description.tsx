@@ -13,6 +13,8 @@ const DescriptionText = () => (
 		<br />
 		Enter a kitty id or full kitty id to scan a kittie's ancestors and display
 		an awesome network-graph/family tree!
+		<br />
+		<u><a href="https://github.com/daylennguyen/CryptokittiesFamilyTree">Or visit the github repo! (Stars are much appreciated ^-^)</a></u>
 	</Typography>
 );
 

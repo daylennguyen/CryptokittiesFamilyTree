@@ -20,7 +20,7 @@ export async function fetchCattributes(callback: any) {
 			callback(json);
 		})
 		.catch((err) => {
-			console.log(err);
+			console.error(err);
 		});
 }
 // Function to fetch and decipher the CKBox data for a specific kitty

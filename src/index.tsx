@@ -28,8 +28,6 @@ import {
 } from './util/fetchKitty';
 import KittyInfoCard from './components/KittyInfoCard';
 import GeneTable from './components/GeneTable';
-// const UntypedComponent = StructureNetwork as any
-// import PageStepper from './components/PageStepper';
 
 // Material UI theme objects passed to theme provide, primarily used to toggle dark theme
 const darkTheme = createMuiTheme({
@@ -85,7 +83,7 @@ class App extends React.Component<{}, AppState> {
 			// Count of kitties fetched through api
 			scannedKitties: 0,
 			theme: {
-				isDark: false,
+				isDark: true,
 			},
 			checked: true,
 			selectedKitty: {},
@@ -101,7 +99,7 @@ class App extends React.Component<{}, AppState> {
 	}
 
 	render() {
-		console.log(this.state);
+		// console.log(this.state);
 		return (
 			<ThemeProvider
 				theme={this.state.theme.isDark === false ? lightTheme : darkTheme}
