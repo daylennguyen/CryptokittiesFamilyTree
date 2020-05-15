@@ -65,6 +65,21 @@ const DonationFooter = (
 			<Typography variant="body1" color="textPrimary">
 				eth donations: 0xb41919C5700779c45116377657Ce56B4E3508eb3
 			</Typography>
+			<span style={{ display: 'flex' }}>
+				<script
+					async
+					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+				></script>
+				<ins
+					className="adsbygoogle"
+					style={{ display: 'block' }}
+					data-ad-client="ca-pub-2960503596344601"
+					data-ad-slot="4348036133"
+					data-ad-format="auto"
+					data-full-width-responsive="true"
+				></ins>
+				<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+			</span>
 		</a>
 	</footer>
 );

@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fa299080c81dee1526238b4ba3d2fe17",
+    "revision": "8757061e32b3416fdc35f6ec4b34b808",
     "url": "/CryptokittiesFamilyTree/index.html"
   },
   {
-    "revision": "3432b9ccc9c751c13c53",
+    "revision": "be0e639501c5395a9415",
     "url": "/CryptokittiesFamilyTree/static/css/main.87ce9e96.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/CryptokittiesFamilyTree/static/js/2.06e99503.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3432b9ccc9c751c13c53",
-    "url": "/CryptokittiesFamilyTree/static/js/main.46a94418.chunk.js"
+    "revision": "be0e639501c5395a9415",
+    "url": "/CryptokittiesFamilyTree/static/js/main.165d50c9.chunk.js"
   },
   {
     "revision": "bbab291d47845208a6a2",
