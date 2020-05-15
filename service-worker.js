@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/CryptokittiesFamilyTree/precache-manifest.b4658d419ea1e4821b7284d94cf49c39.js"
+  "/CryptokittiesFamilyTree/precache-manifest.32b5f4987ad3a3e122e280de4f74b98c.js"
 );
 
 self.addEventListener('message', (event) => {
