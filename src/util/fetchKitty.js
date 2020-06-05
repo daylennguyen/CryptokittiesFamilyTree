@@ -2,6 +2,8 @@
 // medium tree - 1812122
 import React from 'react';
 import { Node, Edge } from '@lifeomic/react-vis-network';
+
+
 // ex. kitty url
 // https://www.cryptokitties.co/kitty/1828056
 const FETCH_INTERVAL = 300, // how often we make a fetch to the api
@@ -10,6 +12,7 @@ const FETCH_INTERVAL = 300, // how often we make a fetch to the api
 	kittyAnchor = '/kitty/',
 	invalidKittyAlert = (kittyid) =>
 		`Invalid Kitty - Kitty Not Found!\n\nNo Kitty Found at:\nhttps://api.cryptokitties.co/kitties/${kittyid}\n\nPlease enter a valid kitty id`;
+
 export function checkForFullKittyAddress(address)
 {
 	let result = false;

@@ -5,7 +5,7 @@ import Fab from '@material-ui/core/Fab';
 // import { useMediaQuery } from '@material-ui/core';
 
 // Floating Action Button used to toggle on/off the dark theme
-export default function (props: {
+export default function(props: {
 	isDark: boolean;
 	onClick:
 		| ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)

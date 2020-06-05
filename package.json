@@ -18,20 +18,24 @@
     "underscore": "1.10.2"
   },
   "devDependencies": {
-    "gh-pages": "latest",
+    "@storybook/react": "^5.3.19",
     "@types/react": "16.9.34",
     "@types/react-dom": "16.9.7",
+    "gh-pages": "latest",
     "source-map-loader": "^0.2.4",
+    "storybook": "^5.3.19",
     "ts-loader": "^7.0.1",
     "webpack-cli": "^3.3.11"
   },
   "scripts": {
+    "storybook": "start-storybook",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-storybook": "build-storybook -c .storybook -o .out"
   },
   "browserslist": [
     ">0.2%",
